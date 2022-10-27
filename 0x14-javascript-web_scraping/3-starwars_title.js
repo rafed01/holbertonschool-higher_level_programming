@@ -1,13 +1,6 @@
 #!/usr/bin/node
-
-const request = require('request');
-const argv = process.argv;
-const url = 'https://swapi-api.hbtn.io/api/films/';
-
-request.get(url + argv[2], function (err, response, body) {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log(JSON.parse(body).title);
-  }
-});
+const axios = require('axios');
+axios.get(`https://swapi-api.hbtn.io/api/films/${process.argv[2]}/?format=json`)
+  .then(resp => {
+    console.log(resp.data.title);
+  });
